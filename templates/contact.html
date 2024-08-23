@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="static/scorpio.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="scorpio">
+                <a href="/"><img class="logo" src="https://i.ibb.co/2htwL5V/scorpio-zodiac-sign-507316-19.jpg" alt="scorpio-zodiac-sign-507316-19" border="0"></a>
+                <h1 style="margin: 10px;">Scorpio</h1></div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/history">History</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-btn">Projects</a>
+                    <ul class="dropdown-content">
+                        <li><a href="https://harinivas-28.github.io/SignIn-SignUp-Page/">Login Page</a></li>
+                        <li><a href="https://github.com/harinivas-28/Text-2-SQL-v2">Text-2-SQL</a></li>
+                        <li><a href="/portfolio">Coming Soon...</a></li>
+                    </ul>
+                </li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        </header>
+
+    <main>
+        <section class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>I'd love to hear from you. Contact me with any questions or inquiries.</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="harinivasg28704@gmail.com">Harinivas G</a></li>
+                <li><strong>Phone:</strong>+91 9848050029</li>
+                <li><strong>Address:</strong>Uppal-500039, Hyderabad</li>
+            </ul>
+        </section>
+
+        <section class="contact-form">
+            <h2>Send a Message</h2>
+            <form action="/contact" method="post">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" onclick="alert('Mail Sent ✅')">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Harinivas G</p>
+    </footer>
+
+</body>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</html>
