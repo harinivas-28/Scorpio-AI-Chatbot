@@ -52,7 +52,7 @@ header {
     display: block;
     width: 30px;
     height: 4px;
-    background-color: #fff;
+    background-color: #333;
     margin: 5px 0;
     transition: 0.3s;
 }

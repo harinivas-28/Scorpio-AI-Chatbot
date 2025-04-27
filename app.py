@@ -110,6 +110,9 @@ def index():
             else:
                 response = get_gemini_response(user_question)
 
+            if response is None:
+                response = "I apologize, but I encountered an error while processing your request. Please try again."
+            
             history("history.json", user_question, response)
             # Convert Markdown to HTML
             html_response = markdown.markdown(response) 
@@ -121,8 +124,11 @@ def show_history():
     try:
         with open('history.json', 'r') as file:
             data = json.load(file)
-            for answer in data:
-                answer['answer'] = markdown.markdown(answer['answer'])
+            for item in data:
+                if item['answer'] is None:
+                    item['answer'] = "No response was generated for this question."
+                else:
+                    item['answer'] = markdown.markdown(item['answer'])
             return render_template('history.html', history=data)
     except FileNotFoundError:
         return "No history found."

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600">
     <link rel="icon" href="{{ url_for('static', filename='scorpio.png') }}" type="image/x-icon">
@@ -17,19 +18,20 @@
             <h1>Scorpio</h1>
         </div>
         <ul class="nav-links">
-            <li><a href="/">Home</a></li>
+            <li><a href="/" class="active">Home</a></li>
             <li><a href="/history">History</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-btn">Projects</a>
                 <ul class="dropdown-content">
+                    <li><a href="https://harinivas-28.github.io/AIML-Chatbot/">AIML Chatbot</a></li>
+                    <li><a href="https://text2sql-v3.onrender.com">Text-2-SQL-v3</a></li>
+                    <li><a href="https://github.com/harinivas-28/count-app">Object Detection and Counting</a></li>
                     <li><a href="https://harinivas-28.github.io/SignIn-SignUp-Page/">Login Page</a></li>
-                    <li><a href="https://github.com/harinivas-28/Text-2-SQL-v2">Text-2-SQL</a></li>
-                    <li><a href="/portfolio">Coming Soon...</a></li>
                 </ul>
             </li>
             <li><a href="/about">About</a></li>
-            <li><a href="/contact" class="active">Contact</a></li>
-            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="https://harinivas-28.github.io/my-complete-portfolio/">Portfolio</a></li>
         </ul>
         <div class="hamburger">
             <span></span>
@@ -37,7 +39,6 @@
             <span></span>
         </div>
     </nav>
-
     <main>
         <section class="contact-info">
             <h2>Get in Touch</h2>
