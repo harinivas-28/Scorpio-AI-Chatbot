@@ -49,18 +49,41 @@ def get_combined_text(uploaded_files):
     return combined_text
 
 def get_gemini_response(query, context=None):
-    try:
-        model = genai.GenerativeModel('gemini-pro')
-        if context:
-            prompt=f"Answer the question based on this context: {context}. Question: {query}"
-            response = model.generate_content([prompt, query])
-        else:
-            prompt=f"Answer the question using information from the internet. Question: {query}"
-            response = model.generate_content([prompt, query])
-        return response.text
-    except Exception as e:
-        print(f"Error generating response: {e}")
-        return None
+    models = [
+        'gemini-1.0-pro',
+        'gemini-1.5-pro',
+        'gemini-pro',
+        'chat-bison-001'
+    ]
+    max_retries = 3
+    retry_count = 0
+    
+    while retry_count < max_retries:
+        for model_name in models:
+            try:
+                model = genai.GenerativeModel(model_name)
+                
+                if context:
+                    prompt = f"Answer the question based on this context: {context}. Question: {query}"
+                else:
+                    prompt = f"Answer the question using information from the internet. Question: {query}"
+                
+                response = model.generate_content([prompt, query])
+                
+                if response and hasattr(response, 'text') and response.text:
+                    return response.text
+                    
+            except Exception as e:
+                print(f"Failed with model {model_name}: {str(e)}")
+                continue
+                
+        retry_count += 1
+        if retry_count == max_retries:
+            error_msg = f"All models failed after {max_retries} retries. Please try again later."
+            print(error_msg)
+            return error_msg
+            
+    return "I apologize, but I cannot process your request at the moment."
 
 def history(file_path, question, answer):
     """
@@ -103,20 +126,23 @@ def index():
         user_question = request.form.get('user_question')
         uploaded_files = request.form.getlist('uploaded_files')
 
-        if user_question:
-            if uploaded_files:
-                context_text = get_combined_text(uploaded_files)
-                response = get_gemini_response(user_question, context=context_text)
-            else:
-                response = get_gemini_response(user_question)
+        if not user_question:
+            return render_template('index.html', 
+                                error="Please enter a question.")
 
-            if response is None:
-                response = "I apologize, but I encountered an error while processing your request. Please try again."
-            
+        if uploaded_files:
+            context_text = get_combined_text(uploaded_files)
+            response = get_gemini_response(user_question, context=context_text)
+        else:
+            response = get_gemini_response(user_question)
+
+        if response:
             history("history.json", user_question, response)
-            # Convert Markdown to HTML
-            html_response = markdown.markdown(response) 
-            return render_template('index.html', response=html_response, user_question=user_question)
+            html_response = markdown.markdown(response)
+            return render_template('index.html', 
+                                response=html_response, 
+                                user_question=user_question)
+        
     return render_template('index.html')
 
 @app.route('/history')

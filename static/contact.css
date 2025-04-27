@@ -40,55 +40,81 @@ main {
 }
 
 .contact-form {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
 .contact-form h2 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: #333;
+    font-size: 1.8rem;
 }
 
 .contact-form form div {
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .contact-form label {
-    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #2c3e50;
     margin-bottom: 0.5rem;
-    color: #555;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    padding: 0.8rem 1rem;
+    border: 2px solid #edf2f7;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover {
+    border-color: #b0b0b0;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    outline: none;
-    border-color: #007bff;
+    border-color: #3b82f6;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.contact-form input.error,
+.contact-form textarea.error {
+    border-color: #ef4444;
+    background-color: #fff;
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
 }
 
 .contact-form button {
-    background-color: #007bff;
+    width: 100%;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .contact-form button:hover {
-    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.contact-form button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 footer {
@@ -107,5 +133,10 @@ footer {
     .contact-info,
     .contact-form {
         padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .contact-form button {
+        padding: 0.8rem;
     }
 }
